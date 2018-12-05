@@ -49,7 +49,7 @@ export function cadastraPostit(dados) {
       description: dados.texto
     };
     api.post("/postits", json).then(response => {
-      dados.id = response.data.id;
+      dados.id = response.data._id;
       dispatch({ type: "CADASTRA_POSTIT", dados });
     });
   };
@@ -82,7 +82,7 @@ export function listaPostits() {
     api.get("/postits").then(response => {
       const dados = response.data.map(item => ({
         //quer modificar a lista que foi recebida
-        id: item.id,
+        id: item._id,
         titulo: item.title,
         texto: item.description
       }));
